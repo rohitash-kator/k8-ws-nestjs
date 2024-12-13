@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  inventory-service:
+    build:
+      context: ./inventory-service # Set context to inventory-service directory
+    ports:
+      - "3001:3000" # Expose inventory service on port 3001
+    env_file:
+      - ./inventory-service/.env # Correct path to .env for inventory-service
+    environment:
+      NODE_ENV: production
+    restart: unless-stopped
+
+  order-service:
+    build:
+      context: ./order-service # Set context to order-service directory
+    ports:
+      - "3002:3000" # Expose order service on port 3002
+    env_file:
+      - ./order-service/.env # Correct path to .env for order-service
+    environment:
+      NODE_ENV: production
+    restart: unless-stopped
